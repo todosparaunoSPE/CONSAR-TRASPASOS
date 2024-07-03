@@ -27,7 +27,7 @@ def load_data(file_path, sheet_name):
 def main():
     st.sidebar.title("Ayuda")
     st.sidebar.info("""
-        Esta aplicación permite cargar y analizar datos de cuentas administradas por las AFORE. 
+        Esta aplicación permite cargar y analizar datos de traspasos de cuentas administradas por las AFORE. 
         Siga estos pasos:
 
         1. **Cargar archivo xlsx:** Utilice el botón para cargar el archivo Excel.
@@ -38,7 +38,7 @@ def main():
         6. **Ver Proyecciones:** Visualice los datos originales y las proyecciones en gráficos interactivos.
     """)
 
-    st.title('CONSAR: Traspasos')
+    st.title('Traspasos: Cuentas Administradas por las AFORE')
 
     # Cargar el archivo xlsx
     file_path = st.file_uploader("Cargar archivo xlsx", type=['xlsx'])
@@ -76,6 +76,7 @@ def main():
 
             # Generar gráfico interactivo con Plotly para datos originales
             fig_original = px.line(filtered_df, x='Fecha', y='Datos', title=f'Datos Originales para {concepto}')
+            fig_original.update_yaxes(tickprefix='', tickformat='')  # Eliminar el prefijo 'M' en el eje Y
             st.plotly_chart(fig_original)
 
             # Selección de modelo de predicción
@@ -139,19 +140,12 @@ def main():
             fig_combined.add_trace(go.Scatter(x=future_df['Fecha'], y=future_df['Datos'], mode='lines', name='Proyección', line=dict(dash='dash', color='red')))
 
             fig_combined.update_layout(title=f'Datos Originales y Proyección para {concepto}', xaxis_title='Fecha', yaxis_title='Datos')
+            fig_combined.update_yaxes(tickprefix='', tickformat='')  # Eliminar el prefijo 'M' en el eje Y
 
             st.plotly_chart(fig_combined)
 
         else:
             st.write(f"No hay datos disponibles para la Descripción del Concepto '{concepto}'.")
-
-
-# Aviso de derechos de autor
-st.sidebar.markdown("""
-    ---
-    © 2024. Todos los derechos reservados.
-    Creado por jahoperi.
-""")
 
 if __name__ == '__main__':
     main()
