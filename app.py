@@ -147,5 +147,16 @@ def main():
         else:
             st.write(f"No hay datos disponibles para la Descripción del Concepto '{concepto}'.")
 
+
+# Aviso de derechos de autor
+st.sidebar.markdown("""
+    ---
+    © 2024. Todos los derechos reservados.
+    Creado por jahoperi.
+""")
+
+if __name__ == '__main__':
+    main()
+
 if __name__ == '__main__':
     main()
