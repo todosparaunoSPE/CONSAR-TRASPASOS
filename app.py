@@ -148,11 +148,16 @@ def main():
 
 
 # Aviso de derechos de autor
-st.sidebar.markdown("""
-    ---
-    © 2024. Todos los derechos reservados.
-    Creado por jahoperi.
-""")
+#st.sidebar.markdown("""
+#    ---
+#    © 2024. Todos los derechos reservados.
+#    Creado por jahoperi.
+#""")
+
+# Pie de página en la barra lateral
+st.sidebar.write("© 2024 Todos los derechos reservados")
+st.sidebar.write("© 2024 Creado por: Javier Horacio Pérez Ricárdez")
+st.sidebar.write("PensionISSSTE: Analista UEAP B")
 
 if __name__ == '__main__':
     main()
